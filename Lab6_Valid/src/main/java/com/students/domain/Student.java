@@ -8,24 +8,42 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
 public class Student {
 	
+	@NotNull
 	private Integer id;
 	
+	@NotBlank
+	@Size(min=4, max=50, message="{firstname.validation}")
  	private String firstName = null;
 	
+	
+	@NotBlank
  	private  String lastName  = null;
 	
+	
+	
+	@NotEmpty
+	@Email
  	private String email = null;
 	
+	
+	@NotEmpty
  	private String gender = null;
 	
+	
+	
+	@NotNull
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
     private Date birthday;
+	
  
+	@Valid
 	private Phone phone;
 
   	public Integer getId() {
