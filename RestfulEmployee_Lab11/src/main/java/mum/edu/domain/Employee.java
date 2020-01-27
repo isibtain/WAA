@@ -4,16 +4,19 @@ import java.io.Serializable;
 
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Employee  {
 	
  
-
+	@NotEmpty
  	private String firstName;
 	
+	@NotEmpty
  	private String lastName;
 	
+	@Email
  	private String email;
 
 	public String getFirstName() {
