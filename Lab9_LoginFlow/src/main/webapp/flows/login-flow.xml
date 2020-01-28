@@ -5,20 +5,23 @@
 http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 
 	<var name="login" class="edu.mum.domain.Login" />
-	
-	<view-state id="displayLoginView" view="jsp/login.jsp" model="login">
+
+	<view-state id="displayLoginView" view="jsp/login.jsp"
+		model="login">
 		<transition on="performLogin" to="performLoginAction" />
 	</view-state>
 
 	<action-state id="performLoginAction">
-		<evaluate expression="loginServiceImpl.verify(login)" />
+		<evaluate
+			expression="loginControllerHelper.authenticate(login)" />
 
-		<transition on="true" to=              />
-		<transition on="false" to=                />
+		<transition on="true" to="showSuccess" />
+		<transition on="false" to="showFailure" />
 
 	</action-state>
-	
-	<view-state            />
 
-	<view-state                         />
+	<view-state id="showSuccess" view="jsp/success.jsp"
+		model="login" />
+
+	<view-state id="showFailure" view="jsp/failure.jsp" />
 </flow>
